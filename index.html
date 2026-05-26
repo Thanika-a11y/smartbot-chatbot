@@ -1,13 +1,238 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>SmartBot Chatbot</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SmartBot Chatbot</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial;
+    }
+
+    body{
+      background:#0f172a;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+
+    .container{
+      width:400px;
+      background:white;
+      border-radius:15px;
+      padding:20px;
+      box-shadow:0px 0px 20px rgba(0,0,0,0.4);
+    }
+
+    h1{
+      text-align:center;
+      color:#2563eb;
+      margin-bottom:15px;
+    }
+
+    #chatbox{
+      height:350px;
+      border:1px solid #ccc;
+      border-radius:10px;
+      padding:10px;
+      overflow-y:auto;
+      margin-bottom:10px;
+      background:#f8fafc;
+    }
+
+    .user{
+      text-align:right;
+      margin:10px;
+      color:green;
+    }
+
+    .bot{
+      text-align:left;
+      margin:10px;
+      color:blue;
+    }
+
+    .input-area{
+      display:flex;
+      gap:10px;
+    }
+
+    input{
+      flex:1;
+      padding:10px;
+      border:1px solid #ccc;
+      border-radius:8px;
+    }
+
+    button{
+      padding:10px 15px;
+      background:#2563eb;
+      color:white;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+    }
+
+    button:hover{
+      background:#1d4ed8;
+    }
+
+  </style>
+
 </head>
 
 <body>
-    <h1>SmartBot Chatbot</h1>
-    <h2>Website working</h2>
-    <p>Website deployed successfully!</p>
+
+<div class="container">
+
+  <h1>🤖 SmartBot</h1>
+
+  <div id="chatbox">
+
+    <div class="bot">
+      <b>Bot:</b> Hello! I am SmartBot.
+    </div>
+
+  </div>
+
+  <div class="input-area">
+
+    <input 
+      type="text" 
+      id="userInput" 
+      placeholder="Type your message..."
+    >
+
+    <button onclick="sendMessage()">
+      Send
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+function sendMessage(){
+
+  let input = document
+    .getElementById("userInput")
+    .value
+    .toLowerCase();
+
+  let chatbox = document.getElementById("chatbox");
+
+  if(input === ""){
+    return;
+  }
+
+  chatbox.innerHTML += `
+    <div class="user">
+      <b>You:</b> ${input}
+    </div>
+  `;
+
+  let response = "";
+
+  // RULE-BASED RESPONSES
+
+  if(input.includes("hello") || input.includes("hi")){
+    response = "Hello! How can I help you?";
+  }
+
+  else if(input.includes("how are you")){
+    response = "I am fine. Thank you!";
+  }
+
+  else if(input.includes("your name")){
+    response = "My name is SmartBot.";
+  }
+
+  else if(input.includes("bye")){
+    response = "Goodbye! Have a nice day.";
+  }
+
+  else if(input.includes("college")){
+    response = "I can help with college information.";
+  }
+
+  else if(input.includes("course")){
+    response = "Many courses are available like AI, ML, Web Development.";
+  }
+
+  else if(input.includes("python")){
+    response = "Python is a popular programming language.";
+  }
+
+  else if(input.includes("java")){
+    response = "Java is used for software and Android development.";
+  }
+
+  else if(input.includes("html")){
+    response = "HTML is used to create webpages.";
+  }
+
+  else if(input.includes("css")){
+    response = "CSS is used for webpage styling.";
+  }
+
+  else if(input.includes("javascript")){
+    response = "JavaScript adds interactivity to websites.";
+  }
+
+  else if(input.includes("ai")){
+    response = "AI means Artificial Intelligence.";
+  }
+
+  else if(input.includes("machine learning")){
+    response = "Machine Learning helps systems learn from data.";
+  }
+
+  else if(input.includes("time")){
+    response = "I cannot check real-time clock now.";
+  }
+
+  else if(input.includes("weather")){
+    response = "Weather information is unavailable currently.";
+  }
+
+  else if(input.includes("food")){
+    response = "I like pizza and burgers!";
+  }
+
+  else if(input.includes("movie")){
+    response = "I enjoy science fiction movies.";
+  }
+
+  else if(input.includes("thank you")){
+    response = "You're welcome!";
+  }
+
+  else{
+    response = "Sorry, I don't understand.";
+  }
+
+  chatbox.innerHTML += `
+    <div class="bot">
+      <b>Bot:</b> ${response}
+    </div>
+  `;
+
+  document.getElementById("userInput").value = "";
+
+  chatbox.scrollTop = chatbox.scrollHeight;
+
+}
+
+</script>
+
 </body>
 </html>
